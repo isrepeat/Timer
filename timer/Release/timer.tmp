@@ -1,0 +1,55 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATtiny13"</DEVICE>
+ <WORKING_DIR>c:\Files\Assembler\timer44\timer\Release</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>c:\Files\Assembler\timer44\timer\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn13def.inc</FILE>
+  <FILE>c:\Files\Assembler\timer44\timer\IF_STATEMENTS.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>c:\Files\Assembler\timer44\timer\Release\timer.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>timer.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>timer.map</FILE>
+  <FILE>timer.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <mmDelayA_ms><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>81</LINE></mmDelayA_ms>
+  <mmDelayA_sec><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>81</LINE></mmDelayA_sec>
+  <PauseA><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>81</LINE></PauseA>
+  <mmDelayB_ms><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>82</LINE></mmDelayB_ms>
+  <mmDelayB_sec><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>82</LINE></mmDelayB_sec>
+  <PauseB><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>82</LINE></PauseB>
+  <mmDelayC_ms><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>83</LINE></mmDelayC_ms>
+  <mmDelayC_sec><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>83</LINE></mmDelayC_sec>
+  <PauseC><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>83</LINE></PauseC>
+  <mmPreMode><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>85</LINE></mmPreMode>
+  <mmPress_ms><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>87</LINE></mmPress_ms>
+  <mmPress_sec><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>88</LINE></mmPress_sec>
+  <mmCountSignal><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>89</LINE></mmCountSignal>
+  <mmTimeWork><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>90</LINE></mmTimeWork>
+  <mmDARK><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>92</LINE></mmDARK>
+  <mmFLIP><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>93</LINE></mmFLIP>
+  <mmEND><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>94</LINE></mmEND>
+  <mmDELAY_sec><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>95</LINE></mmDELAY_sec>
+  <mmDELAY_ms><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>96</LINE></mmDELAY_ms>
+  <Reset><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>212</LINE></Reset>
+  <Interrupt><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>569</LINE></Interrupt>
+  <UpdateMode><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>472</LINE></UpdateMode>
+  <main><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>247</LINE></main>
+  <MainLoop><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>250</LINE></MainLoop>
+  <ClearPress><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>441</LINE></ClearPress>
+  <_UpdateSignal_><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>446</LINE></_UpdateSignal_>
+  <Flipping><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>562</LINE></Flipping>
+  <_UpdateTimer_><FILE>c:\Files\Assembler\timer44\timer\main.asm</FILE><LINE>452</LINE></_UpdateTimer_>
+ </LABELS>
+</ASSEMBLER_INFO>

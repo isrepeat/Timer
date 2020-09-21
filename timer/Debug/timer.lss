@@ -1,0 +1,1536 @@
+
+AVRASM ver. 2.2.7  C:\Files\Assembler\timer43\timer\main.asm Mon May 11 11:01:15 2020
+
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn13def.inc'
+C:\Files\Assembler\timer43\timer\main.asm(1): Including file 'C:\Files\Assembler\timer43\timer\IF_STATEMENTS.inc'
+C:\Files\Assembler\timer43\timer\main.asm(2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn13def.inc'
+C:\Files\Assembler\timer43\timer\main.asm(113): warning: Register r16 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(113): warning: Register r16 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(113): warning: Register r16 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(114): warning: Register r17 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(114): warning: Register r17 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(114): warning: Register r17 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(115): warning: Register r18 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(115): warning: Register r18 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(117): warning: Register r19 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(118): warning: Register r20 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(119): warning: Register r21 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(120): warning: Register r22 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(125): warning: Register r26 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(126): warning: Register r27 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(127): warning: Register r28 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(128): warning: Register r29 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(129): warning: Register r30 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(129): warning: Register r30 already defined by the .DEF directive
+C:\Files\Assembler\timer43\timer\main.asm(131): warning: Register r31 already defined by the .DEF directive
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn13def.inc'
+C:\Files\Assembler\timer43\timer\main.asm(1): Including file 'C:\Files\Assembler\timer43\timer\IF_STATEMENTS.inc'
+C:\Files\Assembler\timer43\timer\main.asm(2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.3.229\avrasm\inc\tn13def.inc'
+                                 
+                                 .include "IF_STATEMENTS.inc"
+                                 
+                                 ;***** Created: 2011-02-09 12:03 ******* Source: ATtiny13.xml ************
+                                 ;*************************************************************************
+                                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                                 ;* 
+                                 ;* Number            : AVR000
+                                 ;* File Name         : "tn13def.inc"
+                                 ;* Title             : Register/Bit Definitions for the ATtiny13
+                                 ;* Date              : 2011-02-09
+                                 ;* Version           : 2.35
+                                 ;* Support E-mail    : avr@atmel.com
+                                 ;* Target MCU        : ATtiny13
+                                 ;* 
+                                 ;* DESCRIPTION
+                                 ;* When including this file in the assembly program file, all I/O register 
+                                 ;* names and I/O register bit names appearing in the data book can be used.
+                                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                                 ;* SRAM is also defined 
+                                 ;* 
+                                 ;* The Register names are represented by their hexadecimal address.
+                                 ;* 
+                                 ;* The Register Bit names are represented by their bit number (0-7).
+                                 ;* 
+                                 ;* Please observe the difference in using the bit names with instructions
+                                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                                 ;* (skip if bit in register set/cleared). The following example illustrates
+                                 ;* this:
+                                 ;* 
+                                 ;* in    r16,PORTB             ;read PORTB latch
+                                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                                 ;* out   PORTB,r16             ;output to PORTB
+                                 ;* 
+                                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                                 ;* rjmp  TOV0_is_set           ;jump if set
+                                 ;* ...                         ;otherwise do something else
+                                 ;*************************************************************************
+                                 
+                                 #ifndef _TN13DEF_INC_
+                                 #define _TN13DEF_INC_
+                                 
+                                 
+                                 #pragma partinc 0
+                                 
+                                 ; ***** SPECIFY DEVICE ***************************************************
+                                 .device ATtiny13
+                                 #pragma AVRPART ADMIN PART_NAME ATtiny13
+                                 .equ	SIGNATURE_000	= 0x1e
+                                 .equ	SIGNATURE_001	= 0x90
+                                 .equ	SIGNATURE_002	= 0x07
+                                 
+                                 #pragma AVRPART CORE CORE_VERSION V2
+                                 #pragma AVRPART CORE NEW_INSTRUCTIONS lpm rd,z+
+                                 
+                                 
+                                 ; ***** I/O REGISTER DEFINITIONS *****************************************
+                                 ; NOTE:
+                                 ; Definitions marked "MEMORY MAPPED"are extended I/O ports
+                                 ; and cannot be used with IN/OUT instructions
+                                 .equ	SREG	= 0x3f
+                                 .equ	SPL	= 0x3d
+                                 .equ	GIMSK	= 0x3b
+                                 .equ	GIFR	= 0x3a
+                                 .equ	TIMSK0	= 0x39
+                                 .equ	TIFR0	= 0x38
+                                 .equ	SPMCSR	= 0x37
+                                 .equ	OCR0A	= 0x36
+                                 .equ	MCUCR	= 0x35
+                                 .equ	MCUSR	= 0x34
+                                 .equ	TCCR0B	= 0x33
+                                 .equ	TCNT0	= 0x32
+                                 .equ	OSCCAL	= 0x31
+                                 .equ	TCCR0A	= 0x2f
+                                 .equ	DWDR	= 0x2e
+                                 .equ	OCR0B	= 0x29
+                                 .equ	GTCCR	= 0x28
+                                 .equ	CLKPR	= 0x26
+                                 .equ	WDTCR	= 0x21
+                                 .equ	EEAR	= 0x1e
+                                 .equ	EEDR	= 0x1d
+                                 .equ	EECR	= 0x1c
+                                 .equ	PORTB	= 0x18
+                                 .equ	DDRB	= 0x17
+                                 .equ	PINB	= 0x16
+                                 .equ	PCMSK	= 0x15
+                                 .equ	DIDR0	= 0x14
+                                 .equ	ACSR	= 0x08
+                                 .equ	ADMUX	= 0x07
+                                 .equ	ADCSRA	= 0x06
+                                 .equ	ADCH	= 0x05
+                                 .equ	ADCL	= 0x04
+                                 .equ	ADCSRB	= 0x03
+                                 
+                                 
+                                 ; ***** BIT DEFINITIONS **************************************************
+                                 
+                                 ; ***** AD_CONVERTER *****************
+                                 ; ADMUX - The ADC multiplexer Selection Register
+                                 .equ	MUX0	= 0	; Analog Channel and Gain Selection Bits
+                                 .equ	MUX1	= 1	; Analog Channel and Gain Selection Bits
+                                 .equ	ADLAR	= 5	; Left Adjust Result
+                                 .equ	REFS0	= 6	; Reference Selection Bit 0
+                                 
+                                 ; ADCSRA - The ADC Control and Status register
+                                 .equ	ADPS0	= 0	; ADC  Prescaler Select Bits
+                                 .equ	ADPS1	= 1	; ADC  Prescaler Select Bits
+                                 .equ	ADPS2	= 2	; ADC  Prescaler Select Bits
+                                 .equ	ADIE	= 3	; ADC Interrupt Enable
+                                 .equ	ADIF	= 4	; ADC Interrupt Flag
+                                 .equ	ADATE	= 5	; ADC Auto Trigger Enable
+                                 .equ	ADSC	= 6	; ADC Start Conversion
+                                 .equ	ADEN	= 7	; ADC Enable
+                                 
+                                 ; ADCH - ADC Data Register High Byte
+                                 .equ	ADCH0	= 0	; ADC Data Register High Byte Bit 0
+                                 .equ	ADCH1	= 1	; ADC Data Register High Byte Bit 1
+                                 .equ	ADCH2	= 2	; ADC Data Register High Byte Bit 2
+                                 .equ	ADCH3	= 3	; ADC Data Register High Byte Bit 3
+                                 .equ	ADCH4	= 4	; ADC Data Register High Byte Bit 4
+                                 .equ	ADCH5	= 5	; ADC Data Register High Byte Bit 5
+                                 .equ	ADCH6	= 6	; ADC Data Register High Byte Bit 6
+                                 .equ	ADCH7	= 7	; ADC Data Register High Byte Bit 7
+                                 
+                                 ; ADCL - ADC Data Register Low Byte
+                                 .equ	ADCL0	= 0	; ADC Data Register Low Byte Bit 0
+                                 .equ	ADCL1	= 1	; ADC Data Register Low Byte Bit 1
+                                 .equ	ADCL2	= 2	; ADC Data Register Low Byte Bit 2
+                                 .equ	ADCL3	= 3	; ADC Data Register Low Byte Bit 3
+                                 .equ	ADCL4	= 4	; ADC Data Register Low Byte Bit 4
+                                 .equ	ADCL5	= 5	; ADC Data Register Low Byte Bit 5
+                                 .equ	ADCL6	= 6	; ADC Data Register Low Byte Bit 6
+                                 .equ	ADCL7	= 7	; ADC Data Register Low Byte Bit 7
+                                 
+                                 ; ADCSRB - ADC Control and Status Register B
+                                 .equ	ADTS0	= 0	; ADC Auto Trigger Source 0
+                                 .equ	ADTS1	= 1	; ADC Auto Trigger Source 1
+                                 .equ	ADTS2	= 2	; ADC Auto Trigger Source 2
+                                 
+                                 ; DIDR0 - Digital Input Disable Register 0
+                                 .equ	ADC1D	= 2	; ADC2 Digital input Disable
+                                 .equ	ADC3D	= 3	; ADC3 Digital input Disable
+                                 .equ	ADC2D	= 4	; ADC2 Digital input Disable
+                                 .equ	ADC0D	= 5	; ADC0 Digital input Disable
+                                 
+                                 
+                                 ; ***** ANALOG_COMPARATOR ************
+                                 ; ADCSRB - ADC Control and Status Register B
+                                 .equ	ACME	= 6	; Analog Comparator Multiplexer Enable
+                                 
+                                 ; ACSR - Analog Comparator Control And Status Register
+                                 .equ	ACIS0	= 0	; Analog Comparator Interrupt Mode Select bit 0
+                                 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
+                                 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
+                                 .equ	ACI	= 4	; Analog Comparator Interrupt Flag
+                                 .equ	ACO	= 5	; Analog Compare Output
+                                 .equ	ACBG	= 6	; Analog Comparator Bandgap Select
+                                 .equ	AINBG	= ACBG	; For compatibility
+                                 .equ	ACD	= 7	; Analog Comparator Disable
+                                 
+                                 ; DIDR0 - 
+                                 .equ	AIN0D	= 0	; AIN0 Digital Input Disable
+                                 .equ	AIN1D	= 1	; AIN1 Digital Input Disable
+                                 
+                                 
+                                 ; ***** EEPROM ***********************
+                                 ; EEAR - EEPROM Read/Write Access
+                                 .equ	EEARL	= EEAR	; For compatibility
+                                 .equ	EEAR0	= 0	; EEPROM Read/Write Access bit 0
+                                 .equ	EEAR1	= 1	; EEPROM Read/Write Access bit 1
+                                 .equ	EEAR2	= 2	; EEPROM Read/Write Access bit 2
+                                 .equ	EEAR3	= 3	; EEPROM Read/Write Access bit 3
+                                 .equ	EEAR4	= 4	; EEPROM Read/Write Access bit 4
+                                 .equ	EEAR5	= 5	; EEPROM Read/Write Access bit 5
+                                 
+                                 ; EEDR - EEPROM Data Register
+                                 .equ	EEDR0	= 0	; EEPROM Data Register bit 0
+                                 .equ	EEDR1	= 1	; EEPROM Data Register bit 1
+                                 .equ	EEDR2	= 2	; EEPROM Data Register bit 2
+                                 .equ	EEDR3	= 3	; EEPROM Data Register bit 3
+                                 .equ	EEDR4	= 4	; EEPROM Data Register bit 4
+                                 .equ	EEDR5	= 5	; EEPROM Data Register bit 5
+                                 .equ	EEDR6	= 6	; EEPROM Data Register bit 6
+                                 .equ	EEDR7	= 7	; EEPROM Data Register bit 7
+                                 
+                                 ; EECR - EEPROM Control Register
+                                 .equ	EERE	= 0	; EEPROM Read Enable
+                                 .equ	EEWE	= 1	; EEPROM Write Enable
+                                 .equ	EEPE	= EEWE	; For compatibility
+                                 .equ	EEMWE	= 2	; EEPROM Master Write Enable
+                                 .equ	EEMPE	= EEMWE	; For compatibility
+                                 .equ	EERIE	= 3	; EEProm Ready Interrupt Enable
+                                 .equ	EEPM0	= 4	; 
+                                 .equ	EEPM1	= 5	; 
+                                 
+                                 
+                                 ; ***** CPU **************************
+                                 ; SREG - Status Register
+                                 .equ	SREG_C	= 0	; Carry Flag
+                                 .equ	SREG_Z	= 1	; Zero Flag
+                                 .equ	SREG_N	= 2	; Negative Flag
+                                 .equ	SREG_V	= 3	; Two's Complement Overflow Flag
+                                 .equ	SREG_S	= 4	; Sign Bit
+                                 .equ	SREG_H	= 5	; Half Carry Flag
+                                 .equ	SREG_T	= 6	; Bit Copy Storage
+                                 .equ	SREG_I	= 7	; Global Interrupt Enable
+                                 
+                                 ; SPL - Stack Pointer Low Byte
+                                 .equ	SP0	= 0	; Stack Pointer Bit 0
+                                 .equ	SP1	= 1	; Stack Pointer Bit 1
+                                 .equ	SP2	= 2	; Stack Pointer Bit 2
+                                 .equ	SP3	= 3	; Stack Pointer Bit 3
+                                 .equ	SP4	= 4	; Stack Pointer Bit 4
+                                 .equ	SP5	= 5	; Stack Pointer Bit 5
+                                 .equ	SP6	= 6	; Stack Pointer Bit 6
+                                 .equ	SP7	= 7	; Stack Pointer Bit 7
+                                 
+                                 ; MCUCR - MCU Control Register
+                                 .equ	ISC00	= 0	; Interrupt Sense Control 0 bit 0
+                                 .equ	ISC01	= 1	; Interrupt Sense Control 0 bit 1
+                                 .equ	SM0	= 3	; Sleep Mode Select Bit 0
+                                 .equ	SM1	= 4	; Sleep Mode Select Bit 1
+                                 .equ	SE	= 5	; Sleep Enable
+                                 .equ	PUD	= 6	; Pull-up Disable
+                                 
+                                 ; MCUSR - MCU Status register
+                                 .equ	PORF	= 0	; Power-On Reset Flag
+                                 .equ	EXTRF	= 1	; External Reset Flag
+                                 .equ	BORF	= 2	; Brown-out Reset Flag
+                                 .equ	WDRF	= 3	; Watchdog Reset Flag
+                                 
+                                 ; OSCCAL - Oscillator Calibration Register
+                                 .equ	CAL0	= 0	; Oscillatro Calibration Value Bit 0
+                                 .equ	CAL1	= 1	; Oscillatro Calibration Value Bit 1
+                                 .equ	CAL2	= 2	; Oscillatro Calibration Value Bit 2
+                                 .equ	CAL3	= 3	; Oscillatro Calibration Value Bit 3
+                                 .equ	CAL4	= 4	; Oscillatro Calibration Value Bit 4
+                                 .equ	CAL5	= 5	; Oscillatro Calibration Value Bit 5
+                                 .equ	CAL6	= 6	; Oscillatro Calibration Value Bit 6
+                                 
+                                 ; CLKPR - Clock Prescale Register
+                                 .equ	CLKPS0	= 0	; Clock Prescaler Select Bit 0
+                                 .equ	CLKPS1	= 1	; Clock Prescaler Select Bit 1
+                                 .equ	CLKPS2	= 2	; Clock Prescaler Select Bit 2
+                                 .equ	CLKPS3	= 3	; Clock Prescaler Select Bit 3
+                                 .equ	CLKPCE	= 7	; Clock Prescaler Change Enable
+                                 
+                                 ; DWDR - Debug Wire Data Register
+                                 .equ	DWDR0	= 0	; Debug Wire Data Register Bit 0
+                                 .equ	DWDR1	= 1	; Debug Wire Data Register Bit 1
+                                 .equ	DWDR2	= 2	; Debug Wire Data Register Bit 2
+                                 .equ	DWDR3	= 3	; Debug Wire Data Register Bit 3
+                                 .equ	DWDR4	= 4	; Debug Wire Data Register Bit 4
+                                 .equ	DWDR5	= 5	; Debug Wire Data Register Bit 5
+                                 .equ	DWDR6	= 6	; Debug Wire Data Register Bit 6
+                                 .equ	DWDR7	= 7	; Debug Wire Data Register Bit 7
+                                 
+                                 ; SPMCSR - Store Program Memory Control and Status Register
+                                 .equ	SPMEN	= 0	; Store program Memory Enable
+                                 .equ	PGERS	= 1	; Page Erase
+                                 .equ	PGWRT	= 2	; Page Write
+                                 .equ	RFLB	= 3	; Read Fuse and Lock Bits
+                                 .equ	CTPB	= 4	; Clear Temporary Page Buffer
+                                 
+                                 
+                                 ; ***** PORTB ************************
+                                 ; PORTB - Data Register, Port B
+                                 .equ	PORTB0	= 0	; 
+                                 .equ	PB0	= 0	; For compatibility
+                                 .equ	PORTB1	= 1	; 
+                                 .equ	PB1	= 1	; For compatibility
+                                 .equ	PORTB2	= 2	; 
+                                 .equ	PB2	= 2	; For compatibility
+                                 .equ	PORTB3	= 3	; 
+                                 .equ	PB3	= 3	; For compatibility
+                                 .equ	PORTB4	= 4	; 
+                                 .equ	PB4	= 4	; For compatibility
+                                 .equ	PORTB5	= 5	; 
+                                 .equ	PB5	= 5	; For compatibility
+                                 
+                                 ; DDRB - Data Direction Register, Port B
+                                 .equ	DDB0	= 0	; 
+                                 .equ	DDB1	= 1	; 
+                                 .equ	DDB2	= 2	; 
+                                 .equ	DDB3	= 3	; 
+                                 .equ	DDB4	= 4	; 
+                                 .equ	DDB5	= 5	; 
+                                 
+                                 ; PINB - Input Pins, Port B
+                                 .equ	PINB0	= 0	; 
+                                 .equ	PINB1	= 1	; 
+                                 .equ	PINB2	= 2	; 
+                                 .equ	PINB3	= 3	; 
+                                 .equ	PINB4	= 4	; 
+                                 .equ	PINB5	= 5	; 
+                                 
+                                 
+                                 ; ***** EXTERNAL_INTERRUPT ***********
+                                 ; MCUCR - MCU Control Register
+                                 ;.equ	ISC00	= 0	; Interrupt Sense Control 0 Bit 0
+                                 ;.equ	ISC01	= 1	; Interrupt Sense Control 0 Bit 1
+                                 
+                                 ; GIMSK - General Interrupt Mask Register
+                                 .equ	GICR	= GIMSK	; For compatibility
+                                 .equ	PCIE	= 5	; Pin Change Interrupt Enable
+                                 .equ	INT0	= 6	; External Interrupt Request 0 Enable
+                                 
+                                 ; GIFR - General Interrupt Flag register
+                                 .equ	PCIF	= 5	; Pin Change Interrupt Flag
+                                 .equ	INTF0	= 6	; External Interrupt Flag 0
+                                 
+                                 ; PCMSK - Pin Change Enable Mask
+                                 .equ	PCINT0	= 0	; Pin Change Enable Mask Bit 0
+                                 .equ	PCINT1	= 1	; Pin Change Enable Mask Bit 1
+                                 .equ	PCINT2	= 2	; Pin Change Enable Mask Bit 2
+                                 .equ	PCINT3	= 3	; Pin Change Enable Mask Bit 3
+                                 .equ	PCINT4	= 4	; Pin Change Enable Mask Bit 4
+                                 .equ	PCINT5	= 5	; Pin Change Enable Mask Bit 5
+                                 
+                                 
+                                 ; ***** TIMER_COUNTER_0 **************
+                                 ; TIMSK0 - Timer/Counter0 Interrupt Mask Register
+                                 .equ	TOIE0	= 1	; Timer/Counter0 Overflow Interrupt Enable
+                                 .equ	OCIE0A	= 2	; Timer/Counter0 Output Compare Match A Interrupt Enable
+                                 .equ	OCIE0B	= 3	; Timer/Counter0 Output Compare Match B Interrupt Enable
+                                 
+                                 ; TIFR0 - Timer/Counter0 Interrupt Flag register
+                                 .equ	TOV0	= 1	; Timer/Counter0 Overflow Flag
+                                 .equ	OCF0A	= 2	; Timer/Counter0 Output Compare Flag 0A
+                                 .equ	OCF0B	= 3	; Timer/Counter0 Output Compare Flag 0B
+                                 
+                                 ; OCR0A - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0A_0	= 0	; 
+                                 .equ	OCR0A_1	= 1	; 
+                                 .equ	OCR0A_2	= 2	; 
+                                 .equ	OCR0A_3	= 3	; 
+                                 .equ	OCR0A_4	= 4	; 
+                                 .equ	OCR0A_5	= 5	; 
+                                 .equ	OCR0A_6	= 6	; 
+                                 .equ	OCR0A_7	= 7	; 
+                                 
+                                 ; TCCR0A - Timer/Counter  Control Register A
+                                 .equ	WGM00	= 0	; Waveform Generation Mode
+                                 .equ	WGM01	= 1	; Waveform Generation Mode
+                                 .equ	COM0B0	= 4	; Compare Match Output B Mode
+                                 .equ	COM0B1	= 5	; Compare Match Output B Mode
+                                 .equ	COM0A0	= 6	; Compare Match Output A Mode
+                                 .equ	COM0A1	= 7	; Compare Match Output A Mode
+                                 
+                                 ; TCNT0 - Timer/Counter0
+                                 .equ	TCNT0_0	= 0	; 
+                                 .equ	TCNT0_1	= 1	; 
+                                 .equ	TCNT0_2	= 2	; 
+                                 .equ	TCNT0_3	= 3	; 
+                                 .equ	TCNT0_4	= 4	; 
+                                 .equ	TCNT0_5	= 5	; 
+                                 .equ	TCNT0_6	= 6	; 
+                                 .equ	TCNT0_7	= 7	; 
+                                 
+                                 ; TCCR0B - Timer/Counter Control Register B
+                                 .equ	CS00	= 0	; Clock Select
+                                 .equ	CS01	= 1	; Clock Select
+                                 .equ	CS02	= 2	; Clock Select
+                                 .equ	WGM02	= 3	; Waveform Generation Mode
+                                 .equ	FOC0B	= 6	; Force Output Compare B
+                                 .equ	FOC0A	= 7	; Force Output Compare A
+                                 
+                                 ; OCR0B - Timer/Counter0 Output Compare Register
+                                 .equ	OCR0B_0	= 0	; 
+                                 .equ	OCR0B_1	= 1	; 
+                                 .equ	OCR0B_2	= 2	; 
+                                 .equ	OCR0B_3	= 3	; 
+                                 .equ	OCR0B_4	= 4	; 
+                                 .equ	OCR0B_5	= 5	; 
+                                 .equ	OCR0B_6	= 6	; 
+                                 .equ	OCR0B_7	= 7	; 
+                                 
+                                 ; GTCCR - General Timer Conuter Register
+                                 .equ	PSR10	= 0	; Prescaler Reset Timer/Counter0
+                                 .equ	TSM	= 7	; Timer/Counter Synchronization Mode
+                                 
+                                 
+                                 ; ***** WATCHDOG *********************
+                                 ; WDTCR - Watchdog Timer Control Register
+                                 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
+                                 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
+                                 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
+                                 .equ	WDE	= 3	; Watch Dog Enable
+                                 .equ	WDCE	= 4	; Watchdog Change Enable
+                                 .equ	WDP3	= 5	; Watchdog Timer Prescaler Bit 3
+                                 .equ	WDTIE	= 6	; Watchdog Timeout Interrupt Enable
+                                 .equ	WDTIF	= 7	; Watchdog Timeout Interrupt Flag
+                                 
+                                 
+                                 
+                                 ; ***** LOCKSBITS ********************************************************
+                                 .equ	LB1	= 0	; Lockbit
+                                 .equ	LB2	= 1	; Lockbit
+                                 
+                                 
+                                 ; ***** FUSES ************************************************************
+                                 ; LOW fuse bits
+                                 .equ	CKSEL0	= 0	; Select Clock Source
+                                 .equ	CKSEL1	= 1	; Select Clock Source
+                                 .equ	SUT0	= 2	; Select start-up time
+                                 .equ	SUT1	= 3	; Select start-up time
+                                 .equ	CKDIV8	= 4	; Start up with system clock divided by 8
+                                 .equ	WDTON	= 5	; Watch dog timer always on
+                                 .equ	EESAVE	= 6	; Keep EEprom contents during chip erase
+                                 .equ	SPIEN	= 7	; SPI programming enable
+                                 
+                                 ; HIGH fuse bits
+                                 .equ	RSTDISBL	= 0	; Disable external reset
+                                 .equ	BODLEVEL0	= 1	; Enable BOD and select level
+                                 .equ	BODLEVEL1	= 2	; Enable BOD and select level
+                                 .equ	DWEN	= 3	; DebugWire Enable
+                                 .equ	SELFPRGEN	= 4	; Self Programming Enable
+                                 
+                                 
+                                 
+                                 ; ***** CPU REGISTER DEFINITIONS *****************************************
+                                 .def	XH	= r27
+                                 .def	XL	= r26
+                                 .def	YH	= r29
+                                 .def	YL	= r28
+                                 .def	ZH	= r31
+                                 .def	ZL	= r30
+                                 
+                                 
+                                 
+                                 ; ***** DATA MEMORY DECLARATIONS *****************************************
+                                 .equ	FLASHEND	= 0x01ff	; Note: Word address
+                                 .equ	IOEND	= 0x003f
+                                 .equ	SRAM_START	= 0x0060
+                                 .equ	SRAM_SIZE	= 64
+                                 .equ	RAMEND	= 0x009f
+                                 .equ	XRAMEND	= 0x0000
+                                 .equ	E2END	= 0x003f
+                                 .equ	EEPROMEND	= 0x003f
+                                 .equ	EEADRBITS	= 6
+                                 #pragma AVRPART MEMORY PROG_FLASH 1024
+                                 #pragma AVRPART MEMORY EEPROM 64
+                                 #pragma AVRPART MEMORY INT_SRAM SIZE 64
+                                 #pragma AVRPART MEMORY INT_SRAM START_ADDR 0x60
+                                 
+                                 
+                                 
+                                 ; ***** BOOTLOADER DECLARATIONS ******************************************
+                                 .equ	PAGESIZE	= 16
+                                 
+                                 
+                                 
+                                 ; ***** INTERRUPT VECTORS ************************************************
+                                 .equ	INT0addr	= 0x0001	; External Interrupt 0
+                                 .equ	PCI0addr	= 0x0002	; External Interrupt Request 0
+                                 .equ	OVF0addr	= 0x0003	; Timer/Counter0 Overflow
+                                 .equ	ERDYaddr	= 0x0004	; EEPROM Ready
+                                 .equ	ACIaddr	= 0x0005	; Analog Comparator
+                                 .equ	OC0Aaddr	= 0x0006	; Timer/Counter Compare Match A
+                                 .equ	OC0Baddr	= 0x0007	; Timer/Counter Compare Match B
+                                 .equ	WDTaddr	= 0x0008	; Watchdog Time-out
+                                 .equ	ADCCaddr	= 0x0009	; ADC Conversion Complete
+                                 
+                                 .equ	INT_VECTORS_SIZE	= 10	; size in words
+                                 
+                                 #endif  /* _TN13DEF_INC_ */
+                                 
+                                 ; ***** END OF FILE ******************************************************
+                                 
+                                 
+                                 ;     * IF/endIF statements *
+                                 ;=================================================================================================
+                                 #ifndef __IF_STATEMENTS__
+                                 #define __IF_STATEMENTS__
+                                 .macro initONE
+                                 	.set p@0_@1_0 = 0
+                                 	.set p@0_@1_1 = 0
+                                 	.set p@0_@1_2 = 0
+                                 	.set p@0_@1_3 = 0
+                                 	.set p@0_@1_4 = 0
+                                 	.set p@0_@1_5 = 0
+                                 	.set p@0_@1_6 = 0
+                                 	.set p@0_@1_7 = 0
+                                 	.set p@0_@1_8 = 0
+                                 	.set p@0_@1_9 = 0
+                                 .endm
+                                 .macro initTWO
+                                 	initONE @0,0
+                                 	initONE @0,1
+                                 	initONE @0,2
+                                 	initONE @0,3
+                                 	initONE @0,4
+                                 	initONE @0,5
+                                 	initONE @0,6
+                                 	initONE @0,7
+                                 	initONE @0,8
+                                 	initONE @0,9
+                                 .endm
+                                 
+                                 .set cc = -1
+                                 initTWO    0
+                                 
+                                 //---------------------------------------------------------
+                                 .macro start_branch
+                                 	.if cc == 100*@1 + 10*@2 + @3
+                                 		.set p@1_@2_@3 = 1	@0 m@1_@2_@3
+                                 	.endif
+                                 .endm
+                                 .macro _end
+                                 	.if p@0_@1_@2 && ok
+                                 		.set ok = 0
+                                 		.set p@0_@1_@2 = 0
+                                 		.set m@0_@1_@2 = PC
+                                 	.endif
+                                 .endm
+                                 //---------------------------------------------------------
+                                 .macro StartBranchONE
+                                 	start_branch @0, @1,@2,0
+                                 	start_branch @0, @1,@2,1
+                                 	start_branch @0, @1,@2,2
+                                 	start_branch @0, @1,@2,3
+                                 	start_branch @0, @1,@2,4
+                                 	start_branch @0, @1,@2,5
+                                 	start_branch @0, @1,@2,6
+                                 	start_branch @0, @1,@2,7
+                                 	start_branch @0, @1,@2,8
+                                 	start_branch @0, @1,@2,9
+                                 .endm
+                                 .macro StartBranchTWO
+                                 	StartBranchONE @0, @1,0
+                                 	StartBranchONE @0, @1,1
+                                 	StartBranchONE @0, @1,2
+                                 	StartBranchONE @0, @1,3
+                                 	StartBranchONE @0, @1,4
+                                 	StartBranchONE @0, @1,5
+                                 	StartBranchONE @0, @1,6
+                                 	StartBranchONE @0, @1,7
+                                 	StartBranchONE @0, @1,8
+                                 	StartBranchONE @0, @1,9
+                                 .endm
+                                 //---------------------------------------------------------
+                                 .macro endONE
+                                 	_end @0,@1,9
+                                 	_end @0,@1,8
+                                 	_end @0,@1,7
+                                 	_end @0,@1,6
+                                 	_end @0,@1,5
+                                 	_end @0,@1,4
+                                 	_end @0,@1,3
+                                 	_end @0,@1,2
+                                 	_end @0,@1,1
+                                 	_end @0,@1,0
+                                 .endm
+                                 .macro endTWO
+                                 	endONE @0,9
+                                 	endONE @0,8
+                                 	endONE @0,7
+                                 	endONE @0,6
+                                 	endONE @0,5
+                                 	endONE @0,4
+                                 	endONE @0,3
+                                 	endONE @0,2
+                                 	endONE @0,1
+                                 	endONE @0,0
+                                 .endm
+                                 //------------------------------------------Short IF-----------------------------------------------
+                                 .macro Condition
+                                 	.set cc = cc + 1
+                                 	.if  cc > 99
+                                 		rjmp Limit
+                                 	.endif
+                                 	StartBranchTWO @0, 0
+                                 .endm
+                                 .macro IF
+                                 	.if(@1 == '=')
+                                 				cpi @0,@2	 Condition brne		//if @0 == @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '!')
+                                 				cpi @0,@2	 Condition breq 	//if @0 != @2   then "выполнить следующие команды"  
+                                 	.endif
+                                 	.if(@1 == '<')	
+                                 				cpi @0,@2	 Condition brge		//if @0 <  @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '{')	
+                                 				cpi @0,@2+1	 Condition brge		//if @0 <= @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '>')				
+                                 				cpi @0,@2+1  Condition brlt		//if @0 >  @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '}')				
+                                 				cpi @0,@2    Condition brlt		//if @0 >= @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 .endm
+                                 .macro IFr
+                                 	.if(@1 == '=')
+                                 				cp @0,@2	 Condition brne 	//if @0 == @2   then "выполнить следующие команды"  
+                                 	.endif
+                                 	.if(@1 == '!')
+                                 				cp @0,@2	 Condition breq 	//if @0 != @2   then "выполнить следующие команды"  
+                                 	.endif
+                                 	.if(@1 == '<')	
+                                 				cp @0,@2	 Condition brge		//if @0 <  @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '{')	
+                                 				cp @2,@0	 Condition brlt 	//if @0 <= @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '>')	
+                                 				cp @2,@0	 Condition brge 	//if @0 >  @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 	.if(@1 == '}')	
+                                 				cp @0,@2	 Condition brlt 	//if @0 >= @2   then "выполнить следующие команды" 
+                                 	.endif
+                                 .endm
+                                 .macro IFF
+                                 	.if(@1 == '=')
+                                 				cpi @0,@2	 brne PC+2			//if @0 == @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '!')
+                                 				cpi @0,@2	 breq PC+2			//if @0 != @2   then "выполнить следующие команды"  
+                                 	.endif
+                                 	.if(@1 == '<')	
+                                 				cpi @0,@2	 brge PC+2			//if @0 <  @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '{')	
+                                 				cpi @0,@2+1	 brge PC+2			//if @0 <= @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '>')				
+                                 				cpi @0,@2+1  brlt PC+2			//if @0 >  @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '}')				
+                                 				cpi @0,@2    brlt PC+2			//if @0 >= @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 .endm
+                                 .macro IFFr
+                                 	.if(@1 == '=')
+                                 				cp @0,@2	 brne PC+2			//if @0 == @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '!')
+                                 				cp @0,@2	 breq PC+2			//if @0 != @2   then "выполнить следующие команды"  
+                                 	.endif
+                                 	.if(@1 == '<')	
+                                 				cp @0,@2	 brge PC+2			//if @0 <  @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '{')	
+                                 				cp @2,@0	 brlt PC+2			//if @0 <= @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '>')	
+                                 				cp @2,@0	 brge PC+2			//if @0 >  @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 	.if(@1 == '}')	
+                                 				cp @0,@2	 brlt PC+2			//if @0 >= @2   then "выполнить следующую команду" 
+                                 	.endif
+                                 .endm
+                                 .macro endIF
+                                 	.set ok = 1
+                                 	endTWO 0
+                                 .endm
+                                 //------------------------------------------------------------------------------------------------
+                                 .macro set_bit
+                                 	.if @1 == 0
+                                 		andi @2,~(1<<@0)
+                                 	.else
+                                 		ori  @2, (1<<@0)
+                                 	.endif
+                                 .endm
+                                 .macro get_bit
+                                 	mov    @0, @2
+                                 	andi   @0, (1<<@1)
+                                 .endm
+                                 //------------------------------------------------------------------------------------------------
+                                 #endif
+                                 .include "tn13def.inc"
+                                 
+                                 ;***** Created: 2011-02-09 12:03 ******* Source: ATtiny13.xml ************
+                                 ;*************************************************************************
+                                 ;* A P P L I C A T I O N   N O T E   F O R   T H E   A V R   F A M I L Y
+                                 ;* 
+                                 ;* Number            : AVR000
+                                 ;* File Name         : "tn13def.inc"
+                                 ;* Title             : Register/Bit Definitions for the ATtiny13
+                                 ;* Date              : 2011-02-09
+                                 ;* Version           : 2.35
+                                 ;* Support E-mail    : avr@atmel.com
+                                 ;* Target MCU        : ATtiny13
+                                 ;* 
+                                 ;* DESCRIPTION
+                                 ;* When including this file in the assembly program file, all I/O register 
+                                 ;* names and I/O register bit names appearing in the data book can be used.
+                                 ;* In addition, the six registers forming the three data pointers X, Y and 
+                                 ;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+                                 ;* SRAM is also defined 
+                                 ;* 
+                                 ;* The Register names are represented by their hexadecimal address.
+                                 ;* 
+                                 ;* The Register Bit names are represented by their bit number (0-7).
+                                 ;* 
+                                 ;* Please observe the difference in using the bit names with instructions
+                                 ;* such as "sbr"/"cbr" (set/clear bit in register) and "sbrs"/"sbrc"
+                                 ;* (skip if bit in register set/cleared). The following example illustrates
+                                 ;* this:
+                                 ;* 
+                                 ;* in    r16,PORTB             ;read PORTB latch
+                                 ;* sbr   r16,(1<<PB6)+(1<<PB5) ;set PB6 and PB5 (use masks, not bit#)
+                                 ;* out   PORTB,r16             ;output to PORTB
+                                 ;* 
+                                 ;* in    r16,TIFR              ;read the Timer Interrupt Flag Register
+                                 ;* sbrc  r16,TOV0              ;test the overflow flag (use bit#)
+                                 ;* rjmp  TOV0_is_set           ;jump if set
+                                 ;* ...                         ;otherwise do something else
+                                 ;*************************************************************************
+                                 
+                                 #ifndef _TN13DEF_INC_
+                                 #endif  /* _TN13DEF_INC_ */
+                                 
+                                 ; ***** END OF FILE ******************************************************
+                                 
+                                 ;=================================================================================================
+                                 ;     * Макросы *
+                                 ;=================================================================================================
+                                 ;-------------------------------------------------------------------------------------------------
+                                 .macro outi
+                                 	ldi temp, @1
+                                 	out @0, temp
+                                 .endm
+                                 .macro flag
+                                 	set_bit @0,@1,Boolean
+                                 .endm
+                                 .macro invert
+                                 	ldi temp, (1<<@0)
+                                 	eor Boolean, temp
+                                 .endm
+                                 .macro IFb
+                                 	get_bit temp,@0,Boolean
+                                 	IF  temp,@1,(@2<<@0)
+                                 .endm
+                                 .macro IFFb
+                                 	get_bit temp,@0,Boolean
+                                 	IFF temp,@1,(@2<<@0)
+                                 .endm
+                                 ;-------------------------------------------------------------------------------------------------
+                                 .macro writeRAMr
+                                 	sts @0,@1
+                                 .endm
+                                 .macro writeRAM
+                                 	ldi temp,@1
+                                 	sts @0,temp
+                                 .endm
+                                 .macro readRAM
+                                 	lds @0,@1
+                                 .endm
+                                 .macro decRAM
+                                 	lds temp,@0
+                                 	dec temp
+                                 	sts @0,temp
+                                 .endm
+                                 .macro incRAM
+                                 	lds temp,@0
+                                 	inc temp
+                                 	sts @0,temp
+                                 .endm
+                                 .macro IFram
+                                 	readRAM temp,@0
+                                 	IF      temp,@1,@2
+                                 .endm
+                                 .macro IFramr
+                                 	readRAM temp,@0
+                                 	IFr     temp,@1,@2
+                                 .endm
+                                 .macro IFFram
+                                 	readRAM temp,@0
+                                 	IFF     temp,@1,@2
+                                 .endm
+                                 ;-------------------------------------------------------------------------------------------------
+                                 .macro FFFcall
+                                 	lds par1,@1
+                                 	lds par2,@2
+                                 	lds par3,@3
+                                 	rcall @0	
+                                 	sts  @3,par3
+                                 	sts  @2,par2
+                                 	sts  @1,par1
+                                 .endm
+                                 .macro SetTimer
+                                 	.if   @1>0  && @2==0
+                                 		writeRAM mmDelay@0_sec,@1
+                                 	.elif @1==0 && @2>0
+                                 		writeRAM mmDelay@0_ms, @2
+                                 	.elif @1>0  && @2>0
+                                 		writeRAM mmDelay@0_sec,@1
+                                 		writeRAM mmDelay@0_ms, @2
+                                 	.endif	
+                                 .endm
+                                 .macro UpdateTimer
+                                 	FFFcall _UpdateTimer_,mmDelay@0_ms,mmDelay@0_sec,Pause@0
+                                 .endm
+                                 ;-------------------------------------------------------------------------------------------------
+                                 .macro TimeSignal
+                                 	.set TimeA = @0*inSecond + @1		//переводим заданное время в типа ~[ms] (1/70 [c])
+                                 	.set TimeB = @2*inSecond + @3
+                                 	.set TimeB = TimeA - TimeB
+                                 	.set Asec  = TimeA/inSecond
+                                 	.set Bsec  = TimeB/inSecond
+                                 	.set Ams   = TimeA%inSecond
+                                 	.set Bms   = TimeB%inSecond
+                                 	.if(Asec > 0)
+                                 		ldi  TimerSig_sec, Asec
+                                 	.endif
+                                 	.if(Ams  > 0)
+                                 		ldi  TimerSig_ms,  Ams
+                                 	.endif
+                                 	.if(Bsec > 0)
+                                 		ldi  PauseSig_sec, Bsec
+                                 	.endif
+                                 	.if(Bms  > 0)
+                                 		ldi  PauseSig_ms,  Bms
+                                 	.endif
+                                 .endm
+                                 .macro SetSignal
+                                 	TimeSignal @0,@1,@2,@3
+                                 	rcall _UpdateSignal_
+                                 .endm
+                                 ;-------------------------------------------------------------------------------------------------
+                                 ;=================================================================================================
+                                 ;     * Имена регистров *
+                                 ;=================================================================================================
+                                 .def  par1			= r16	.def light	= r16	.def Dms	= r16	.def Pms	= r16
+                                 .def  par2			= r17	.def dark	= r17	.def Dsec	= r17	.def Psec	= r17
+                                 .def  par3			= r18	.def flip	= r18	.def Dpause	= r18
+                                 
+                                 .def  TimerSig_ms	= r19	.def par4	= r19	
+                                 .def  TimerSig_sec	= r20	.def par5	= r20	
+                                 .def  PauseSig_ms	= r21	.def par6	= r21
+                                 .def  PauseSig_sec	= r22	.def par7	= r22	
+                                 
+                                 .def  temp			= r23
+                                 .def  Down			= r24	
+                                 .def  tempPORT		= r25
+                                 .def  PreSecondLOW	= r26
+                                 .def  kState		= r27	
+                                 .def  num			= r28	
+                                 .def  mode			= r29
+                                 .def  Option		= r30	.def tempSREG = r30
+                                 
+                                 .def  Boolean		= r31
+                                 ;=================================================================================================
+                                 ;     * Константы *
+                                 ;=================================================================================================
+                                 .equ  inPreSecond		= 64			;приходится разбить на 2 байта отсчет для секунды т.к. 64*70 > 255. Поскольку мы оперируем с секундами и минутами, а не [мс], то можно схитрить и так.
+                                 .equ  inSecond			= 70			;примерно столько нужно раз сработать PreSecondHIGH, чтобы получилась секунда
+                                 .equ  inMinute			= 1;60			;[sec] через сколько секунд наступит минута(по умолчанию 60)
+                                 
+                                 .equ  Iteration			= 0
+                                 .equ  CanReset			= 1
+                                 .equ  StartProgramm		= 2
+                                 .equ  Signal			= 3
+                                 .equ  SingleMode		= 4
+                                 .equ  var5				= 5
+                                 .equ  var6				= 6
+                                 .equ  var7				= 7
+                                 
+                                 .equ  delayPress		= 25			;задержка для дребезга (в пресекундах или итерациях осн цикла)
+C:\Files\Assembler\timer43\timer\main.asm(149): warning: float->int cast, truncated
+                                 .equ  delayNormMode		= inSecond*0.75	;[ms]  задержка нажатия во время набора
+                                 .equ  delayHardMode		= 2				;[sec] задержка нажатия для перехода в другие режимы
+                                 .equ  delayMinReset		= 2				;[ms]  минимальное  время нажатия для сброса
+C:\Files\Assembler\timer43\timer\main.asm(152): warning: float->int cast, truncated
+                                 .equ  delayMaxReset		= inSecond*0.5	;[ms]  максимальное время нажатия для сброса
+C:\Files\Assembler\timer43\timer\main.asm(153): warning: float->int cast, truncated
+                                 .equ  delayBeforeStart	= inSecond*0.5	;[ms]  задержка перед стартом после отпускания кнопки набора
+                                 
+                                 .equ  TIMER_1  = 4		;15
+                                 .equ  TIMER_2  = 4		;15
+                                 .equ  TIMER_3  = 4		;15
+                                 .equ  TIMER_4  = 4		;15
+                                 .equ  TIMER_11 = 6		;5
+                                 .equ  TIMER_12 = 6		;10
+                                 .equ  TIMER_88 = 999	;infinity
+                                 
+                                 .equ  COUNT_END	= 7		;7
+                                 .equ  COUNT_1	= 1		;1
+                                 .equ  COUNT_2	= 2		;2
+                                 .equ  COUNT_3	= 3		;3
+                                 .equ  COUNT_4	= 4		;4
+                                 .equ  COUNT_11	= 1		;1
+                                 .equ  COUNT_12	= 2		;2
+                                 .equ  COUNT_88	= 4		;4
+                                 
+                                 .equ  timerAsec = 0						;[sec] время сигнала
+C:\Files\Assembler\timer43\timer\main.asm(173): warning: float->int cast, truncated
+                                 .equ  timerAms  = inSecond*0.5			;[ms]  время сигнала
+                                 .equ  widthAsec = 0						;[sec] продолжительность сигнала
+C:\Files\Assembler\timer43\timer\main.asm(175): warning: float->int cast, truncated
+                                 .equ  widthAms  = inSecond*0.25			;[ms]  продолжительность сигнала
+                                 
+                                 .equ  timerBsec = 0						;[sec] время сигнала
+C:\Files\Assembler\timer43\timer\main.asm(178): warning: float->int cast, truncated
+                                 .equ  timerBms  = inSecond*0.24			;[ms]  время сигнала
+                                 .equ  widthBsec = 0						;[sec] продолжительность сигнала
+C:\Files\Assembler\timer43\timer\main.asm(180): warning: float->int cast, truncated
+                                 .equ  widthBms  = inSecond*0.12			;[ms]  продолжительность сигнала
+                                 
+                                 
+                                 .dseg
+                                 #define	DefineTimer(X)	mmDelay##X##_ms:.byte 1  mmDelay##X##_sec:.byte 1  Pause##X:.byte 1
+000060
+000060000061
+000060000061000062               		DefineTimer(A)
+000063
+000063000064
+000063000064000065               		DefineTimer(B)
+000066
+000066000067
+000066000067000068               		DefineTimer(C)
+                                 		
+000069                           		mmPreMode:			.byte 1
+                                 			
+00006a                           		mmPress_ms:			.byte 1
+00006b                           		mmPress_sec:		.byte 1
+00006c                           		mmCountSignal:		.byte 1	
+00006d                           		mmTimeWork:			.byte 1	
+                                 
+00006e                           		mmDARK:				.byte 1
+00006f                           		mmFLIP:				.byte 1
+000070                           		mmEND:				.byte 1
+000071                           		mmDELAY_sec:		.byte 1
+000072                           		mmDELAY_ms:			.byte 1
+                                 ;=================================================================================================
+                                 ;     * Инициализация *
+                                 ;=================================================================================================
+                                 .cseg
+                                 .org 0x0000	
+000000 c005                      		rjmp    Reset
+                                 .org 0x0005								;прерывание по изменению переполнению
+000005 c1b6                      		rjmp	Interrupt				;переход к программе обработки прерывания
+                                 
+                                 Reset:
+000006 94f8                      		cli
+                                 		
+000007 e0c1                      		ldi   num,0b00000001
+000008 e0d0                      		ldi   mode,0
+000009 e0e0                      		ldi   Option,0
+00000a e0b0                      		ldi   kState,0
+00000b e0f0                      		ldi   Boolean,0
+00000c e0a0                      		ldi   PreSecondLOW,0
+00000d e030                      		ldi   TimerSig_ms, 0
+00000e e040                      		ldi   TimerSig_sec,0
+00000f e050                      		ldi   PauseSig_ms, 0
+000010 e060                      		ldi   PauseSig_sec,0
+                                 
+000011 d147                      		rcall UpdateMode		;вызываем для очистки некоторых переменный в ОЗУ
+                                 
+000012 e070                      		ldi   temp,0
+000013 9370 0060                 		sts   mmDelayA_ms, temp
+000015 9370 0061                 		sts   mmDelayA_sec,temp
+000017 9370 0063                 		sts   mmDelayB_ms, temp
+000019 9370 0064                 		sts   mmDelayB_sec,temp
+00001b 9370 0066                 		sts   mmDelayC_ms, temp
+00001d 9370 0067                 		sts   mmDelayC_sec,temp
+                                 
+00001f e071
+000020 bf73                      		outi TCCR0B, 0b00000001
+000021 e072
+000022 bf79                      		outi TIMSK0, 0b00000010
+                                 
+000023 e97f
+000024 bf7d                      		outi  SPL  , RAMEND		 ;инициализация стека
+000025 ed77
+000026 bb77                      		outi  DDRB , 0b11010111	 ;Назначаеем PВ3 входом, остальные выходами
+000027 e078
+000028 bb78                      		outi  PORTB, 0b00001000	 ;Включаем подтяжку на PВ3
+                                 
+                                 		//SetTimer B, 0,delayBeforeStart
+000029 e233
+00002a e152
+00002b d115                      		SetSignal   timerAsec,timerAms,  widthAsec,widthAms
+00002c e5d8                      		ldi mode,88
+00002d 60f4                      		flag   StartProgramm,1
+00002e e071
+00002f 9370 0067                 		SetTimer C, inMinute,0
+000031 e071
+000032 9370 0068                 		ldi temp,1 sts PauseC,temp
+000034 d105
+000035 e0e3
+000036 60f2                      		rcall ClearPress  ldi Option,3		flag CanReset,1
+                                 
+000037 9478                      		sei
+                                 ;=================================================================================================
+                                 ;     * Главный цикл *
+                                 ;=================================================================================================
+                                 main:
+                                 	//sbis PINB,3			rjmp main
+                                 
+                                 MainLoop:									;работа программы гарантируется если основной цикл будет 
+                                 											;выполнятся быстрее чем произойдет прерывание
+000038 2f7f
+000039 7071
+00003a 3070
+00003b f409                      	IFFb Iteration,'=',0
+00003c cffb                      						rjmp MainLoop
+                                 
+00003d b396                      	in	 tempPORT, PINB
+00003e 7e98                      	andi tempPORT, 0b11101000				;гасим 0й, 2й, 4й, и выключаем звук
+                                 
+                                 
+                                 	;--------   KeyState   --------
+00003f 99b3
+000040 95ba                      	sbic  PINB,3		dec kState
+000041 9bb3
+000042 95b3                      	sbis  PINB,3		inc kState
+                                 
+000043 3eb7
+000044 f414                      	IF  kState, '<',-delayPress
+000045 eeb7                      		ldi  kState,-delayPress
+000046 e080                      		ldi  Down,0
+                                 	endIF
+000047 31ba
+000048 f014                      	IF  kState, '>', delayPress
+000049 e1b9                      		ldi  kState, delayPress
+00004a e081                      		ldi  Down,1
+                                 	endIF
+                                 	;------------------------------
+                                 	;--------  PressState  --------
+00004b 9110 006b                 	lds Psec, mmPress_sec				;главное чтобы во время использования этих переменных
+00004d 9100 006a                 	lds Pms,  mmPress_ms				;они не перезаписались какойнибудь функцией с par1, par2, ...
+00004f 30a0
+000050 f471                      	IF  PreSecondLOW,'=',0				;каждую 1/70 секунды проверяем состояние
+000051 3080
+000052 f409                      		IFF Down,'=',0
+000053 d0e6                      				rcall ClearPress	
+                                 		
+000054 3081
+000055 f449                      		IF  Down,'=',1
+000056 9503                      			inc Pms
+000057 3406
+000058 f421                      			IF  Pms,'=',inSecond
+000059 e000                      				ldi Pms,0				
+00005a 9513
+00005b 9310 006b                 				inc Psec	sts mmPress_sec,Psec
+                                 			endIF
+00005d 9300 006a                 			sts mmPress_ms,Pms
+                                 		endIF
+                                 	endIF
+                                 	;------------------------------
+                                 	;----------------------------------------------------
+00005f 30e0
+000060 f4a9                      	IF  Option,'=',0
+000061 30d4
+000062 f434                      		IF  mode,'<',4
+000063 3081
+000064 f421                      		IF  Down,'=',1
+000065 3304
+000066 f411                      		IF  Pms,'=',delayNormMode
+000067 95d3                      			inc   mode
+000068 d0d1                      			rcall ClearPress
+                                 		endIF
+                                 		endIF
+                                 		endIF
+000069 30d1
+00006a f05c                      		IF  mode,'>',0
+00006b 3080
+00006c f449                      		IF  Down,'=',0
+00006d e273
+00006e 9370 0063                 			SetTimer B, 0,delayBeforeStart
+000070 e233
+000071 e152
+000072 d0ce                      			SetSignal   timerAsec,timerAms,  widthAsec,widthAms
+000073 d0c6
+000074 e0e1
+000075 60f2                      			rcall ClearPress  ldi Option,1		flag CanReset,1
+                                 		endIF
+                                 		endIF
+                                 	endIF
+                                 	;----------------------------------------------------
+000076 30e1
+000077 f449                      	IF  Option,'=',1
+000078 9170 0065
+00007a 3070
+00007b f429                      		IFram PauseB,'=',0
+00007c e0e2                      			ldi    Option,2	
+00007d 60f4                      			flag   StartProgramm,1
+00007e e071
+00007f 9370 0067                 			SetTimer C, inMinute,0
+                                 		endIF
+                                 	endIF
+                                 	;----------------------------------------------------
+000081 30e2
+000082 f469                      	IF  Option,'=',2
+000083 3081
+000084 f459                      		IF  Down,'=',1
+000085 3012
+000086 f449                      		IF	Psec,'=',delayHardMode
+000087 30d1
+000088 f409                      			IFF mode,'=',1
+000089 e0db                      							ldi mode,11
+00008a 30d2
+00008b f409                      			IFF mode,'=',2
+00008c e0dc                      							ldi mode,12
+00008d 30d4
+00008e f409                      			IFF mode,'=',4
+00008f e5d8                      							ldi mode,88
+                                 		endIF
+                                 		endIF
+                                 	endIF
+                                 	;----------------------------------------------------
+000090 2f7f
+000091 7072
+000092 3072
+000093 f449                      	IFb CanReset,'=',1
+000094 3080
+000095 f439                      	IF  Down,'=',0
+000096 3010
+000097 f429                      		IF Psec,'=',0
+000098 3003
+000099 f01c                      		IF Pms, '>',delayMinReset
+00009a 3203
+00009b f40c                      		IF Pms, '<',delayMaxReset
+00009c cf69                      								rjmp Reset
+                                 		endIF
+                                 		endIF
+                                 		endIF
+                                 	endIF
+                                 	endIF
+                                 	;----------------------------------------------------
+00009d 9170 0069
+00009f 177d
+0000a0 f009                      	IFramr mmPreMode,'!',mode
+0000a1 d0b7                      			rcall  UpdateMode
+                                 	endIF
+                                 	;------------------------------------------------------
+0000a2 9110 006e                 	lds dark, mmDARK
+0000a4 9120 006f                 	lds flip, mmFLIP
+0000a6 2f7f
+0000a7 7074
+0000a8 3074
+0000a9 f5b1                      	IFb StartProgramm,'=',1
+0000aa 9170 0065
+0000ac 3070
+0000ad f4d1                      		IFram  PauseB,'=',0
+0000ae 9170 0071
+0000b0 9370 0064                 			lds	temp,mmDELAY_sec	sts	mmDelayB_sec,temp
+0000b2 9170 0072
+0000b4 9370 0063                 			lds temp,mmDELAY_ms		sts mmDelayB_ms, temp
+                                 
+0000b6 2712                      			eor dark,flip				
+                                 
+0000b7 9100 0070                 			lds par1,mmEnd
+0000b9 3000
+0000ba f069                      			IF  par1,'!',0
+0000bb d0f9                      				rcall Flipping
+                                 
+0000bc 2f70                      				mov temp,par1
+0000bd 2372                      				and temp,flip
+                                 
+0000be 3071
+0000bf f044                      				IF  temp,'>',0
+0000c0 3001
+0000c1 f00c                      					IF  par1,'>',0
+0000c2 2720                      						eor flip,par1
+                                 					endIF
+0000c3 3000
+0000c4 f41c                       					IF  par1,'<',0
+0000c5 e870
+0000c6 2717
+0000c7 d0ed                      						ldi temp,0b10000000	eor dark,temp	rcall Flipping
+                                 					endIF
+                                 				endIF
+                                 			endIF
+                                 		endIF
+0000c8 9170 0068
+0000ca 3070
+0000cb f499                      		IFram PauseC,'=',0
+0000cc 9170 006d                 			  lds temp,mmTimeWork
+0000ce 957a                      			  dec temp
+0000cf 9370 006d                 			  sts mmTimeWork,temp
+0000d1 3070
+0000d2 f449                      			  IF  temp,'=',0
+0000d3 95da                      				  dec  mode
+0000d4 30d1
+0000d5 f40c                      				  IFF  mode,'{',0
+0000d6 efdf                      								ldi mode,-1
+0000d7 2f7f
+0000d8 7170
+0000d9 3170
+0000da f409                      				  IFFb SingleMode,'=',1
+0000db efdf                      								ldi mode,-1
+                                 			  endIF
+0000dc e071
+0000dd 9370 0067                 			  SetTimer C, inMinute,0
+                                 		endIF
+                                 		
+0000df 6290                      		ori  tempPORT,0b00100000
+                                 	endIF
+0000e0 9310 006e                 	sts mmDARK, dark
+0000e2 9320 006f                 	sts mmFLIP, flip
+                                 	;------------------------------------------------------
+0000e4 2f0c                      	mov light,num
+0000e5 2301                      	and light,dark
+                                 	;------------------------------------------------------
+0000e6 3002
+0000e7 f409                      	IFF light,'=',0b00000010
+0000e8 6095                      									ori tempPORT,0b00000101
+0000e9 3004
+0000ea f409                      	IFF light,'=',0b00000100
+0000eb 6190                      									ori tempPORT,0b00010000
+0000ec 3008
+0000ed f409                      	IFF light,'=',0b00001000
+0000ee 6091                      									ori tempPORT,0b00000001
+0000ef 3100
+0000f0 f409                      	IFF light,'=',0b00010000
+0000f1 6194                      									ori tempPORT,0b00010100
+                                 	;------------------------------------------------------
+0000f2 9100 0066
+0000f4 9110 0067
+0000f6 9120 0068
+0000f8 d04e
+0000f9 9320 0068
+0000fb 9310 0067
+0000fd 9300 0066                 	UpdateTimer C
+0000ff 9100 0063
+000101 9110 0064
+000103 9120 0065
+000105 d041
+000106 9320 0065
+000108 9310 0064
+00010a 9300 0063                 	UpdateTimer B
+00010c 9100 0060
+00010e 9110 0061
+000110 9120 0062
+000112 d034
+000113 9320 0062
+000115 9310 0061
+000117 9300 0060                 	UpdateTimer A
+000119 3020
+00011a f469                      	IF	Dpause,'=',0
+00011b 9170 006c                 		lds  temp,mmCountSignal
+00011d 957a                      		dec  temp
+00011e 9370 006c                 		sts  mmCountSignal,temp
+000120 3071
+000121 f00c                      		IF   temp,'>',0
+000122 d01e                      				rcall _UpdateSignal_
+                                 		endIF
+000123 3070
+000124 f419                      		IF   temp,'=',0
+000125 3fdf
+000126 f409                      		IFF  mode,'=',-1
+000127 cede                      				rjmp Reset
+                                 		endIF
+                                 	endIF
+000128 3010
+000129 f064                      	IF	Dsec,'}',0
+00012a 3001
+00012b f054                      	IF	Dms, '>',0
+00012c 1716
+00012d f419                      		IFr  Dsec,'=',PauseSig_sec
+00012e 1705
+00012f f409                      		IFr  Dms, '=',PauseSig_ms
+000130 7ff7                      				flag Signal,0
+                                 		endIF
+                                 		endIF
+                                 
+000131 2f7f
+000132 7078
+000133 3078
+000134 f409                      		IFFb Signal,'=',1
+000135 6092                      				ori tempPORT,0b00000010
+                                 	endIF
+                                 	endIF
+                                 	;---------------------------------------------------
+                                 									;при отпускании кнопки на ножке образуется неопределенное состояние
+000136 6098                      	ori tempPORT, 0b00001000		;поэтому подтягиваем ножку контролера к 5V - "кнопка не нажата"
+000137 bb98                      	out    PORTB, tempPORT
+                                 
+000138 7ffe                      	flag  Iteration,0
+000139 cefe                      rjmp MainLoop
+                                 ;=================================================================================================
+                                 ;     * Функции *
+                                 ;=================================================================================================
+                                 ClearPress:
+00013a e010
+00013b 9310 006b                 	ldi Psec,0	sts mmPress_sec,Psec
+00013d e000
+00013e 9300 006a                 	ldi Pms, 0	sts mmPress_ms, Pms	
+000140 9508                      ret
+                                 ;-------------------------------------------------------------------------------------------------
+                                 _UpdateSignal_:
+000141 9340 0061                 	sts  mmDelayA_sec, TimerSig_sec
+000143 9330 0060                 	sts  mmDelayA_ms,  TimerSig_ms
+000145 60f8                      	flag Signal,1
+000146 9508                      ret
+                                 ;-------------------------------------------------------------------------------------------------
+                                 _UpdateTimer_:
+000147 e021                      	ldi Dpause,1
+                                 
+000148 30a0
+000149 f471                      	IF  PreSecondLOW,'=',0			;обновляем задержку каждую 1/70 секунды
+00014a 950a                      		dec Dms
+00014b 3000
+00014c f419                      		IF  Dms, '=',0
+00014d 3010
+00014e f409                      		IF  Dsec,'=',0
+00014f e020                      			ldi Dpause,0			;после заводки таймера сработает 1 раз (с 1 мс на 0 мс)
+                                 		endIF
+                                 		endIF
+000150 3001
+000151 f434                      		IF  Dms,'{',0
+000152 e406                      			ldi Dms,inSecond
+000153 951a                      			dec Dsec
+000154 3010
+000155 f414                      			IF  Dsec,'<',0			
+000156 e000
+000157 e010                      				ldi Dms,0	ldi Dsec,0
+                                 			endIF
+                                 		endIF
+                                 	endIF
+000158 9508                      ret
+                                 ;-------------------------------------------------------------------------------------------------
+                                 UpdateMode:		
+000159 93d0 0069                 	sts mmPreMode,mode
+                                 
+00015b 3fdf
+00015c f421                      	IF  mode,'=',-1
+00015d e130
+00015e e058                      		TimeSignal timerBsec,timerBms,  widthBsec,widthBms
+00015f 7ffb                      		flag StartProgramm,0
+000160 e077                      		ldi  temp, COUNT_END
+                                 	endIF
+000161 30db
+000162 f014                      	IF mode,'>', 10
+000163 e130
+000164 e058                      		TimeSignal timerBsec,timerBms,  widthBsec,widthBms
+                                 	endIF
+                                 
+000165 933f                      	push par4	
+000166 934f                      	push par5
+000167 935f                      	push par6
+                                 
+000168 e000                      	ldi par1,0	  ;end
+000169 e010                      	ldi dark,0	  ;par2
+00016a e020                      	ldi flip,0	  ;par3
+00016b e030                      	ldi par4,0	  ;Blink		[ms]
+00016c e040                      	ldi par5,0	  ;Blink		[sec]
+00016d e050                      	ldi par6,0	  ;TimeWork		[min]
+                                 		
+00016e 30d1
+00016f f429                      	IF mode,'=', 1
+000170 e012                      		ldi dark, 0b00000010
+000171 e022                      		ldi flip, 0b00000010
+000172 e436                      		ldi par4, inSecond
+000173 e054                      		ldi par6, TIMER_1
+000174 e071                      		ldi temp, COUNT_1
+                                 	endIF
+000175 30d2
+000176 f429                      	IF mode,'=', 2
+000177 e016                      		ldi dark, 0b00000110
+000178 e024                      		ldi flip, 0b00000100
+000179 e436                      		ldi par4, inSecond
+00017a e054                      		ldi par6, TIMER_2
+00017b e072                      		ldi temp, COUNT_2
+                                 	endIF
+00017c 30d3
+00017d f429                      	IF mode,'=', 3
+00017e e01e                      		ldi dark, 0b00001110
+00017f e028                      		ldi flip, 0b00001000
+000180 e436                      		ldi par4, inSecond
+000181 e054                      		ldi par6, TIMER_3
+000182 e073                      		ldi temp, COUNT_3
+                                 	endIF
+000183 30d4
+000184 f429                      	IF mode,'=', 4
+000185 e11e                      		ldi dark, 0b00011110
+000186 e120                      		ldi flip, 0b00010000
+000187 e436                      		ldi par4, inSecond
+000188 e054                      		ldi par6, TIMER_4
+000189 e074                      		ldi temp, COUNT_4
+                                 	endIF
+00018a 30db
+00018b f439                      	IF mode,'=', 11
+00018c e012                      		ldi dark, 0b00000010
+00018d e026                      		ldi flip, 0b00000110
+00018e e809                      		ldi par1, 0b10001001
+00018f e233                      		ldi par4, inSecond/2
+000190 e056
+000191 61f0                      		ldi par6, TIMER_11				flag SingleMode,1
+000192 e071                      		ldi temp, COUNT_11
+                                 	endIF
+000193 30dc
+000194 f439                      	IF mode,'=', 12
+000195 e012                      		ldi dark, 0b00000010
+000196 e026                      		ldi flip, 0b00000110
+000197 e901                      		ldi par1, 0b10010001
+000198 e131                      		ldi par4, inSecond/4
+000199 e056
+00019a 61f0                      		ldi par6, TIMER_12				flag SingleMode,1
+00019b e072                      		ldi temp, COUNT_12
+                                 	endIF
+00019c 35d8
+00019d f421                      	IF mode,'=', 88
+00019e e112                      		ldi dark, 0b00010010
+00019f e122                      		ldi flip, 0b00010010
+0001a0 e436                      		ldi par4, inSecond
+0001a1 e074                      		ldi temp, COUNT_88
+                                 	endIF
+                                 
+0001a2 9300 0070                 	sts mmEND,		   par1
+0001a4 9310 006e                 	sts mmDARK,        dark
+0001a6 9320 006f                 	sts mmFLIP,        flip
+0001a8 9330 0072                 	sts mmDELAY_ms,    par4
+0001aa 9340 0071                 	sts mmDELAY_sec,   par5
+0001ac 9350 006d                 	sts mmTimeWork,    par6
+0001ae 9370 006c                 	sts mmCountSignal, temp
+                                 
+                                 
+0001b0 915f                      	pop par6
+0001b1 914f                      	pop par5
+0001b2 913f                      	pop par4
+                                 
+0001b3 df8d                      	rcall _UpdateSignal_
+0001b4 9508                      ret
+                                 ;-------------------------------------------------------------------------------------------------
+                                 Flipping:
+0001b5 3011
+0001b6 f00c                      	IFF dark,'>',0
+0001b7 0f22                      				lsl flip
+0001b8 3010
+0001b9 f40c                      	IFF dark,'<',0
+0001ba 9526                      				lsr flip
+0001bb 9508                      ret
+                                 ;-------------------------------------------------------------------------------------------------
+                                 Interrupt:
+0001bc 937f                      	push temp
+0001bd 93ef                      	push tempSREG
+0001be b7ef                      	in   tempSREG,SREG
+                                 	;------------------
+0001bf e070
+0001c0 bf72                      	outi TCNT0, 0	
+                                 
+0001c1 0fcc                      	lsl num						;счетчик от 1 до 4 по которому загораются соответствующие светодиоды
+0001c2 32c0
+0001c3 f409                      	IFF num,'=',0b00100000
+0001c4 e0c2                      		ldi num,0b00000010
+                                 
+0001c5 95a3                      	inc  PreSecondLOW
+0001c6 34a0
+0001c7 f409                      	IFF  PreSecondLOW,'=',inPreSecond
+0001c8 e0a0                      			ldi PreSecondLOW,0	
+                                 
+0001c9 60f1                      	flag Iteration,1			;синхронизируем основной цикл с прерываниями
+                                 	;------------------
+0001ca bfef                      	out  SREG,tempSREG
+0001cb 91ef                      	pop  tempSREG
+0001cc 917f                      	pop  temp
+0001cd 9518                      reti
+                                 
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+"ATtiny13" register use summary:
+x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
+r13:   0 r14:   0 r15:   0 r16:  39 r17:  35 r18:  25 r19:  17 r20:   6 
+r21:  16 r22:   2 r23:  81 r24:   8 r25:  10 r26:   6 r27:   7 r28:   5 
+r29:  27 r30:  11 r31:  17 
+Registers used: 16 out of 35 (45.7%)
+
+"ATtiny13" instruction use summary:
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   2 
+andi  :   9 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   2 brge  :   8 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :  10 brmi  :   0 
+brne  :  48 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 cbi   :   0 cbr   :   0 clc   :   0 
+clh   :   0 cli   :   1 cln   :   0 clr   :   0 cls   :   0 clt   :   0 
+clv   :   0 clz   :   0 com   :   0 cp    :   3 cpc   :   0 cpi   :  65 
+cpse  :   0 dec   :   6 eor   :   3 icall :   0 ijmp  :   0 in    :   2 
+inc   :   5 ld    :   0 ldd   :   0 ldi   :  97 lds   :  22 lpm   :   0 
+lsl   :   2 lsr   :   1 mov   :   7 movw  :   0 neg   :   0 nop   :   0 
+or    :   0 ori   :  15 out   :   8 pop   :   5 push  :   5 rcall :  15 
+ret   :   5 reti  :   1 rjmp  :   6 rol   :   0 ror   :   0 sbc   :   0 
+sbci  :   0 sbi   :   0 sbic  :   1 sbis  :   1 sbiw  :   0 sbr   :   0 
+sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 sei   :   1 sen   :   0 
+ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   0 
+spm   :   0 st    :   0 std   :   0 sts   :  40 sub   :   0 subi  :   0 
+swap  :   0 tst   :   0 wdr   :   0 
+Instructions used: 30 out of 105 (28.6%)
+
+"ATtiny13" memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x00039c    916      0    916    1024  89.5%
+[.dseg] 0x000060 0x000073      0     19     19      64  29.7%
+[.eseg] 0x000000 0x000000      0      0      0      64   0.0%
+
+Assembly complete, 0 errors, 26 warnings
